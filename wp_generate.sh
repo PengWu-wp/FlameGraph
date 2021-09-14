@@ -8,10 +8,10 @@ then
 elif [ "$1"x == "all"x ];
 then
 	echo Capturing overall stack samples...
-	sudo perf record -F 99 -a -g -- sleep 10
+	sudo perf record -F 99 --call-graph dwarf -a -g -- sleep 10
 else
 	echo Capturing stack samples in process $1...
-	sudo perf record -F 99 -p $1 -g -- sleep 10
+	sudo perf record -F 99 --call-graph dwarf -p $1 -g -- sleep 10
 fi
 
 sudo perf script > out.perf
